@@ -1,14 +1,25 @@
-import { Text, TouchableOpacity } from "react-native"
+import React from "react";
+import { TouchableOpacity } from "react-native"
 
 interface ButtonProps {
-	text: string;
-	onPress: () => {};
+	contentClassName: string;
+	children: React.ReactNode;
+	onPress: () => void;
 }
 
-const Button = ({ text, onPress }: ButtonProps) => {
-	<TouchableOpacity onPress={onPress}>
-		<Text>{text}</Text>
-	</TouchableOpacity>
+const Button = ({
+	contentClassName,
+	children,
+	onPress
+}: ButtonProps) => {
+	return (
+		<TouchableOpacity
+			onPress={onPress}
+			className={`h-12 justify-center items-center rounded-lg ${contentClassName}`}
+		>
+			{children}
+		</TouchableOpacity>
+	)
 }
 
 export default Button;

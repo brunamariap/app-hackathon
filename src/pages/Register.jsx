@@ -4,8 +4,7 @@ import Button from "../components/Button";
 import { InputPassword } from "../components/InputPassword";
 import { useNavigation } from "@react-navigation/native";
 
-const Login = () => {
-
+const Register = () => {
 	const navigation = useNavigation()
 
 	return (
@@ -27,10 +26,27 @@ const Login = () => {
 				>
 					<Input
 						placeholder="Usuário"
-						contentClassName="mt-5 mb-4"
+						contentClassName="mt-5"
+					/>
+					<Input
+						placeholder="Nome completo"
+						contentClassName="mt-5"
+					/>
+					<Input
+						placeholder="E-mail"
+						contentClassName="mt-5"
+					/>
+					<Input
+						placeholder="CEP"
+						contentClassName="mt-5"
 					/>
 					<InputPassword
 						placeholder="Senha"
+						contentClassName="mt-5"
+					/>
+					<InputPassword
+						placeholder="Confirme sua senha"
+						contentClassName="mt-5"
 					/>
 				</View>
 				<Button
@@ -39,14 +55,14 @@ const Login = () => {
 				>
 					<Text className="text-white font-semibold">Entrar</Text>
 				</Button>
-				<Text className="text-black font-semibold text-sm self-center mt-4">Não tem uma conta?</Text>
+				<Text className="text-black font-semibold text-sm self-center mt-4">Já tem uma conta?</Text>
 				<TouchableOpacity
 					onPress={() => {
-						navigation.navigate("Register")
+						navigation.navigate("Login")
 					}}
 				>
 					<Text className="text-primary font-semibold text-sm self-center">
-						Cadastre-se
+						Entrar
 					</Text>
 				</TouchableOpacity>
 			</View>
@@ -54,4 +70,4 @@ const Login = () => {
 	)
 }
 
-export default Login;
+export default Register;
