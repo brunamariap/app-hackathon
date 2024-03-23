@@ -14,7 +14,6 @@ const Register = () => {
 			<View>
 				<Image
 					source={require("../assets/img/logo_controle.png")}
-					// style={{ width: 200, height: 200 }}
 					className="w-72 h-10"
 				/>
 			</View>

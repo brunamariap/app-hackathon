@@ -15,7 +15,6 @@ const Login = () => {
 			<View>
 				<Image
 					source={require("../assets/img/logo_controle.png")}
-					// style={{ width: 200, height: 200 }}
 					className="w-72 h-10"
 				/>
 			</View>
@@ -34,7 +33,7 @@ const Login = () => {
 					/>
 				</View>
 				<Button
-					onPress={() => { }}
+					onPress={() => {() => navigation.navigate("Tabs")}}
 					contentClassName="bg-primary mt-7"
 				>
 					<Text className="text-white font-semibold">Entrar</Text>
