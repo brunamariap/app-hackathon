@@ -12,7 +12,7 @@ const Home = () => {
 		<View
 			className="flex-1 items-center justify-center bg-background-color w-full"
 		>
-			<View>
+			<View className="w-[85%]">
 				<Heading
 					title="Nome da cidade"
 					description="Teste"

@@ -5,7 +5,8 @@ import AppRoutes from "./app.routes";
 const Routes = () => {
 	return (
 		<NavigationContainer>
-			<AppRoutes />
+			{/* <AppRoutes /> */}
+			<AuthRoutes />
 		</NavigationContainer>
 	)
 }
