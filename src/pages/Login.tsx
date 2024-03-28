@@ -7,6 +7,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { useAuth } from "../contexts/AuthContext";
+import controleH2OApi from "../services/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+interface UserParams {
+	username: string;
+	password: string;
+}
 
 const Login = () => {
 
@@ -29,12 +36,28 @@ const Login = () => {
 		resolver: yupResolver(loginSchema),
 	});
 
-	const onSubmitLogin = async (data: any) => {
+	const onSubmitLogin = async (userData: UserParams) => {
 		try {
+			console.log('dat1', userData)
 			// const status = await login(data.username, data.password);
+			const params = {
+				'username': userData.username,
+				'password': userData.password,
+			}
+			console.log('params',params)
 
-			console.log('login')
-			console.log(data)
+			const { data } = await controleH2OApi.post('auth/login/', params);
+			console.log('data',data)
+
+			await AsyncStorage.multiSet([
+				['@ControleH2O:token', data.access],
+				['@ControleH2O:refresh', data.refresh]
+			])
+
+			// await AsyncStorage.setItem('@ControleH2O:user', JSON.stringify(data));
+			// console.log('s',status)
+
+			console.log('data', data)
 			// if (status === "error") {
 			// 	Alert.alert(
 			// 		"Erro ao se autenticar",
@@ -42,7 +65,7 @@ const Login = () => {
 			// 	);
 			// }
 		} catch (err) {
-			console.log(JSON.stringify(err))
+			console.log(JSON.stringify('erro3'))
 			Alert.alert(
 				"Erro ao se autenticar",
 				"Nome de usuário ou senha incorretos, verifique ambos e tente novamente."
@@ -69,15 +92,6 @@ const Login = () => {
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value, ref } }) => (
-							// <Input
-							// 	inputRef={ref}
-							// 	onChangeText={onChange}
-							// 	onBlur={onBlur}
-							// 	value={value}
-							// 	error={errors?.username?.message}
-							// 	placeholder="Sua matrícula"
-							// 	keyboardType={"numeric"}
-							// />
 							<Input
 								inputRef={ref}
 								onChangeText={onChange}
@@ -93,15 +107,6 @@ const Login = () => {
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value, ref } }) => (
-							// <Input
-							// 	inputRef={ref}
-							// 	onChangeText={onChange}
-							// 	onBlur={onBlur}
-							// 	value={value}
-							// 	error={errors?.username?.message}
-							// 	placeholder="Sua matrícula"
-							// 	keyboardType={"numeric"}
-							// />
 							<Input
 								inputRef={ref}
 								onChangeText={onChange}
@@ -115,19 +120,16 @@ const Login = () => {
 						)}
 						name="password"
 					/>
-					{/* <InputPassword
-						placeholder="Senha"
-					/> */}
 				</View>
 				<Button
-					onPress={() => { () => navigation.navigate("Tabs") }}
+					onPress={handleSubmit(onSubmitLogin)}
 					contentClassName="bg-primary mt-7"
 				>
 					<Text className="text-white font-semibold">Entrar</Text>
 				</Button>
 				<Text className="text-black font-semibold text-sm self-center mt-4">Não tem uma conta?</Text>
 				<TouchableOpacity
-					onPress={handleSubmit(onSubmitLogin)}
+					onPress={() => navigation.navigate("Register")}
 				>
 					<Text className="text-primary font-semibold text-sm self-center">
 						Cadastre-se

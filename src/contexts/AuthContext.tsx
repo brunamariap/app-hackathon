@@ -7,10 +7,19 @@ interface AuthProviderProps {
 	children: React.ReactNode;
 }
 
+interface CreateUserData {
+	username: string;
+	name: string;
+	email: string;
+	password: string;
+}
+
 interface AuthContextProps {
 	user: User | undefined;
-	login: () => void;
-	logout: () => void;
+	setUser: React.Dispatch<React.SetStateAction<User | undefined>>
+	login: (username: string, password: string) => Promise<void>;
+	logout: () => Promise<void>;
+	register: (data: CreateUserData) => Promise<void>;
 }
 
 const AuthContext = createContext({} as AuthContextProps);
@@ -18,24 +27,37 @@ const AuthContext = createContext({} as AuthContextProps);
 const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [user, setUser] = useState<User | undefined>();
 
+	const register = useCallback(async (userData: CreateUserData) => {
+		const params = {
+			'first_name': userData.name,
+			'last_name': '',
+			'username': userData.username,
+			'email': userData.email,
+			'password': userData.password,
+		}
+		const { data } = await controleH2OApi.post('auth/login/', params);
+	}, [])
+
 	const login = useCallback(async (username: string, password: string) => {
+		console.log('teste', username, password)
 		try {
 			const params = {
 				'username': username,
 				'password': password,
 			}
+			console.log('params', params)
 
-			// const { data } = await controleH2OApi.post('autenticacao/token/', params);
-
+			const { data } = await controleH2OApi.post('auth/login/', params);
+			console.log(data)
 			// await AsyncStorage.multiSet([
 			// 	['@ControleH2O:token', data.access],
 			// 	['@ControleH2O:refresh', data.refresh]
 			// ])
 
-			// getStudentProfile();
-			// await AsyncStorage.setItem('@ControleH2O:user', JSON.stringify(data));
+			await AsyncStorage.setItem('@ControleH2O:user', JSON.stringify(data));
 		} catch (error) {
-			throw new Error(error)
+			// throw new Error(error)
+			console.log(JSON.stringify('erro'))
 		}
 	}, []);
 
@@ -59,8 +81,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 	const contextValues = {
 		user,
+		setUser,
 		login,
 		logout,
+		register,
 	}
 
 	return (

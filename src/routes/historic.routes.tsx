@@ -1,5 +1,4 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import Details from "../pages/Details";
 import Home from "../pages/Home";
 import Historic from "../pages/Historic";
 

@@ -25,6 +25,9 @@ const Home = () => {
 					property="pH"
 					data="7.0"
 					updatedAt={"2023-09-08"}
+					onPress={() => {
+						navigation.navigate("PropertyDetails")
+					}}
 					icon={<Droplet width={28} height={28} className="text-primary" />}
 				/>
 				<InfoCard
@@ -32,6 +35,9 @@ const Home = () => {
 					property="Temperatura"
 					data="7.0"
 					updatedAt={"2023-09-08"}
+					onPress={() => {
+						navigation.navigate("PropertyDetails")
+					}}
 					icon={<Thermometer width={28} height={28} className="text-primary" />}
 				/>
 				<InfoCard
@@ -39,6 +45,9 @@ const Home = () => {
 					property="Condutividade"
 					data="7.0"
 					updatedAt={"2023-09-08"}
+					onPress={() => {
+						navigation.navigate("PropertyDetails")
+					}}
 					icon={<MaterialIcons name="waves" size={28} color="#007EA7" />}
 				/>
 				<InfoCard
@@ -46,6 +55,9 @@ const Home = () => {
 					property="Oxigênio"
 					data="7.0"
 					updatedAt={"2023-09-08"}
+					onPress={() => {
+						navigation.navigate("PropertyDetails")
+					}}
 					icon={<MaterialIcons name="waves" size={28} color="#007EA7" />}
 				/>
 				<InfoCard
@@ -53,6 +65,9 @@ const Home = () => {
 					property="Turbidez"
 					data="7.0"
 					updatedAt={"2023-09-08"}
+					onPress={() => {
+						navigation.navigate("PropertyDetails")
+					}}
 					icon={<CloudSnow width={28} height={28} className="text-primary" />}
 				/>
 				<Text className="text-white font-semibold">Entrar</Text>

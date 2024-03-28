@@ -17,11 +17,12 @@ const InfoCard = ({
 	data,
 	updatedAt,
 	icon,
-	contentClassName
+	contentClassName,
+	onPress,
 }: InfoCardProps) => {
 	return (
 		<TouchableOpacity
-			onPress={() => { }}
+			onPress={onPress}
 			className={`w-full flex-row items-center bg-primary-background rounded-lg p-4 justify-between ${contentClassName}`}>
 			<View className="flex-row items-center gap-x-2">
 				<View>

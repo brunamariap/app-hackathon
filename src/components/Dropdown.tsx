@@ -18,7 +18,7 @@ const Dropdown = ({ label }: DropdownProps) => {
 					value: undefined,
 				}}
 				value={undefined}
-				onValueChange={(value) => console.log(value)}
+				onValueChange={(value) => (value)}
 				items={[
 					// { label: 'Ano', value: 'Ano' },
 					{ label: 'Football', value: 'football' },
