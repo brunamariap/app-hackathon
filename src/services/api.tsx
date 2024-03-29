@@ -2,7 +2,12 @@ import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const api = axios.create({
-	baseURL: "http://10.112.1.218:8000/api",
+	baseURL: "http://192.168.0.105:3001/",
+	headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  },
 });
 
 export const controleH2OApi = axios.create({
@@ -10,7 +15,7 @@ export const controleH2OApi = axios.create({
 	headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'Access-Control-Allow-Origin': '*', // Permitindo solicitações de todos os origens
+    'Access-Control-Allow-Origin': '*',
   },
 });
 

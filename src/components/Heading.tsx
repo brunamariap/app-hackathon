@@ -11,7 +11,7 @@ const Heading = ({
 }: HeadingProps) => {
 	return (
 		<View className="w-full flex-col">
-			<Text className="font-semibold text-black self-start">{title}</Text>
+			<Text className="font-semibold text-black self-start text-2xl">{title}</Text>
 			{description && <Text>{description}</Text>}
 		</View>
 	)

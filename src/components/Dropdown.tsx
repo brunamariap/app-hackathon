@@ -20,10 +20,9 @@ const Dropdown = ({ label }: DropdownProps) => {
 				value={undefined}
 				onValueChange={(value) => (value)}
 				items={[
-					// { label: 'Ano', value: 'Ano' },
-					{ label: 'Football', value: 'football' },
-					{ label: 'Baseball', value: 'baseball' },
-					{ label: 'Hockey', value: 'hockey' },
+					{ label: '2022', value: '2022' },
+					{ label: '2023', value: '2023' },
+					{ label: '2023', value: '2024' },
 				]}
 			/>
 		</View>

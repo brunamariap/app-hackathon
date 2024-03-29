@@ -3,7 +3,7 @@ import { Text, TextInput, View } from "react-native"
 interface InputProps {
 	placeholder: string;
 	contentClassName?: string;
-	error: string;
+	error?: string;
 	defaultValue?: string;
 }
 

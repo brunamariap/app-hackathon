@@ -4,7 +4,7 @@ import { Octicons } from '@expo/vector-icons';
 import React from "react";
 
 interface HistoricInfoCardProps {
-	updatedAt: Date;
+	updatedAt: Date | string;
 	contentClassName?: string;
 	onPress: () => void;
 }

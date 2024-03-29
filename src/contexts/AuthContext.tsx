@@ -1,7 +1,8 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
 import { User } from "../interfaces/user";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import controleH2OApi from "../services/api";
+import controleH2OApi, { api } from "../services/api";
+import { Alert } from "react-native";
 
 interface AuthProviderProps {
 	children: React.ReactNode;
@@ -39,16 +40,29 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 	}, [])
 
 	const login = useCallback(async (username: string, password: string) => {
-		console.log('teste', username, password)
 		try {
-			const params = {
-				'username': username,
-				'password': password,
-			}
-			console.log('params', params)
+			const { data } = await api.get('users/');
 
-			const { data } = await controleH2OApi.post('auth/login/', params);
-			console.log(data)
+			const foundUser = data.find(
+				(user: User) =>
+					user.username === username && user.password === password
+			);
+			if (foundUser) {
+				const newUser = await api.get(`users/${foundUser.id}`)
+				setUser(newUser)
+				console.log("jsdjns", newUser)
+			} else {
+				Alert.alert("Erro no login", "E-mail ou senha incorretos");
+			}
+
+			// const params = {
+			// 	'username': username,
+			// 	'password': password,
+			// }
+			// console.log('params', params)
+
+			// const { data } = await controleH2OApi.post('auth/login/', params);
+
 			// await AsyncStorage.multiSet([
 			// 	['@ControleH2O:token', data.access],
 			// 	['@ControleH2O:refresh', data.refresh]

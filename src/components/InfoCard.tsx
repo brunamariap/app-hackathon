@@ -6,7 +6,7 @@ import React from "react";
 interface InfoCardProps {
 	property: string;
 	data: string | number;
-	updatedAt: Date;
+	updatedAt: Date | string;
 	icon: React.ReactNode;
 	contentClassName?: string;
 	onPress: () => void;
@@ -39,7 +39,7 @@ const InfoCard = ({
 				<Octicons name="history" size={16} color={"#676767"} />
 				<View>
 					<Text className="text-gray text-xs">Última atualização em:</Text>
-					<Text className="text-gray text-xs">12/12/2023 às 12:00</Text>
+					<Text className="text-gray text-xs">{updatedAt}</Text>
 				</View>
 			</View>
 		</TouchableOpacity>

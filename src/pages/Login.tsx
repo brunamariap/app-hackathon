@@ -7,8 +7,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { useAuth } from "../contexts/AuthContext";
-import controleH2OApi from "../services/api";
+import controleH2OApi, { api } from "../services/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { User } from "../interfaces/user";
 
 interface UserParams {
 	username: string;
@@ -17,7 +18,7 @@ interface UserParams {
 
 const Login = () => {
 
-	const { login } = useAuth();
+	const { login, user, setUser } = useAuth();
 
 	const navigation = useNavigation()
 
@@ -38,34 +39,51 @@ const Login = () => {
 
 	const onSubmitLogin = async (userData: UserParams) => {
 		try {
-			console.log('dat1', userData)
-			// const status = await login(data.username, data.password);
-			const params = {
-				'username': userData.username,
-				'password': userData.password,
-			}
-			console.log('params',params)
+			// console.log('dat1', userData)
+			// // const status = await login(userData.username, userData.password);
 
-			const { data } = await controleH2OApi.post('auth/login/', params);
-			console.log('data',data)
+			// const { data } = await api.get('users/');
+			// console.log(data)
+			// const foundUser = data.find(
+			// 	(user: User) =>
+			// 		user.username === userData.username && user.password === userData.password
+			// );
 
-			await AsyncStorage.multiSet([
-				['@ControleH2O:token', data.access],
-				['@ControleH2O:refresh', data.refresh]
-			])
+			// if (foundUser) {
+			// 	console.log("djdnddjsndjn")
+			// 	// const loggedUser = await api.get(`users/${foundUser.id}`)
+			// 	setUser(foundUser[0])
+			// } else {
+			// 	Alert.alert("Erro no login", "E-mail ou senha incorretos");
+			// }
+			await login(userData.username, userData.password);
+			// const params = {
+			// 	'username': userData.username,
+			// 	'password': userData.password,
+			// }
+			// console.log('params',params)
+
+			// const { data } = await controleH2OApi.post('auth/login/', params);
+			// console.log('data',data)
+
+			// await AsyncStorage.multiSet([
+			// 	['@ControleH2O:token', data.access],
+			// 	['@ControleH2O:refresh', data.refresh]
+			// ])
 
 			// await AsyncStorage.setItem('@ControleH2O:user', JSON.stringify(data));
 			// console.log('s',status)
 
-			console.log('data', data)
+			// console.log('data', data)
 			// if (status === "error") {
 			// 	Alert.alert(
 			// 		"Erro ao se autenticar",
-			// 		"Nome de usuário ou senha incorretos, verifique ambos e tente novamente."
+			// 		"Nome de usuário ou senha incorretos."
 			// 	);
 			// }
-		} catch (err) {
-			console.log(JSON.stringify('erro3'))
+		} catch (error) {
+			console.log(error)
+			console.log(JSON.stringify(error))
 			Alert.alert(
 				"Erro ao se autenticar",
 				"Nome de usuário ou senha incorretos, verifique ambos e tente novamente."
