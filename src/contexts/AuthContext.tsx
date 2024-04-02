@@ -41,32 +41,32 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 	const login = useCallback(async (username: string, password: string) => {
 		try {
-			const { data } = await api.get('users/');
+			// const { data } = await api.get('users/');
 
-			const foundUser = data.find(
-				(user: User) =>
-					user.username === username && user.password === password
-			);
-			if (foundUser) {
-				const newUser = await api.get(`users/${foundUser.id}`)
-				setUser(newUser)
-				console.log("jsdjns", newUser)
-			} else {
-				Alert.alert("Erro no login", "E-mail ou senha incorretos");
-			}
-
-			// const params = {
-			// 	'username': username,
-			// 	'password': password,
+			// const foundUser = data.find(
+			// 	(user: User) =>
+			// 		user.username === username && user.password === password
+			// );
+			// if (foundUser) {
+			// 	const newUser = await api.get(`users/${foundUser.id}`)
+			// 	setUser(newUser)
+			// 	console.log("jsdjns", newUser)
+			// } else {
+			// 	Alert.alert("Erro no login", "E-mail ou senha incorretos");
 			// }
-			// console.log('params', params)
 
-			// const { data } = await controleH2OApi.post('auth/login/', params);
+			const params = {
+				'username': username,
+				'password': password,
+			}
+			console.log('params', params)
 
-			// await AsyncStorage.multiSet([
-			// 	['@ControleH2O:token', data.access],
-			// 	['@ControleH2O:refresh', data.refresh]
-			// ])
+			const { data } = await controleH2OApi.post('auth/login/', params);
+
+			await AsyncStorage.multiSet([
+				['@ControleH2O:token', data.access],
+				['@ControleH2O:refresh', data.refresh]
+			])
 
 			await AsyncStorage.setItem('@ControleH2O:user', JSON.stringify(data));
 		} catch (error) {
@@ -74,6 +74,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 			console.log(JSON.stringify('erro'))
 		}
 	}, []);
+
+	const getProfile = useCallback(async () => {
+		const { data } = controleH2OApi.get("auth")
+	}, [])
 
 	const logout = useCallback(async () => {
 		setUser(undefined);

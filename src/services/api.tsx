@@ -2,21 +2,22 @@ import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const api = axios.create({
-	baseURL: "http://192.168.0.105:3001/",
+	// baseURL: "http://192.168.0.106:3001/",
 	headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  },
+		'Content-Type': 'application/json',
+		'Accept': 'application/json',
+		'Access-Control-Allow-Origin': '*',
+	},
 });
 
 export const controleH2OApi = axios.create({
-	baseURL: "http://127.0.0.1:8000/api/",
+	baseURL: "http://192.168.0.103:8000/api/",
+	// baseURL: "https://controleh2o.pythonanywhere.com/api/",
 	headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  },
+		'Content-Type': 'application/json',
+		'Accept': 'application/json',
+		'Access-Control-Allow-Origin': '*',
+	},
 });
 
 // controleH2OApi.interceptors.request.use(

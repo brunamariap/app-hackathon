@@ -17,6 +17,7 @@ const HomeRoutes = () => {
 			/>
 			<Stack.Screen
 				name="PropertyDetails"
+				// @ts-expect-error
 				component={PropertyDetails}
 			/>
 		</Stack.Navigator>

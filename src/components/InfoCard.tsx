@@ -5,8 +5,8 @@ import React from "react";
 
 interface InfoCardProps {
 	property: string;
-	data: string | number;
-	updatedAt: Date | string;
+	data: string | number | undefined;
+	updatedAt: string | undefined;
 	icon: React.ReactNode;
 	contentClassName?: string;
 	onPress: () => void;

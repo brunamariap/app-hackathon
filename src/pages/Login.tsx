@@ -40,7 +40,7 @@ const Login = () => {
 	const onSubmitLogin = async (userData: UserParams) => {
 		try {
 			// console.log('dat1', userData)
-			// // const status = await login(userData.username, userData.password);
+			// const status = await login(userData.username, userData.password);
 
 			// const { data } = await api.get('users/');
 			// console.log(data)
@@ -56,14 +56,24 @@ const Login = () => {
 			// } else {
 			// 	Alert.alert("Erro no login", "E-mail ou senha incorretos");
 			// }
-			await login(userData.username, userData.password);
-			// const params = {
-			// 	'username': userData.username,
-			// 	'password': userData.password,
-			// }
+			// await login(userData.username, userData.password);
+			const params = {
+				'username': userData.username,
+				'password': userData.password,
+			}
 			// console.log('params',params)
 
-			// const { data } = await controleH2OApi.post('auth/login/', params);
+			const { data } = await controleH2OApi.post('auth/login/', params);
+			console.log(data)
+			console.log(user)
+			setUser(JSON.stringify(data))
+
+			await AsyncStorage.multiSet([
+				['@ControleH2O:token', data.access],
+				['@ControleH2O:refresh', data.refresh]
+			])
+
+			await AsyncStorage.setItem('@ControleH2O:user', JSON.stringify(data));
 			// console.log('data',data)
 
 			// await AsyncStorage.multiSet([

@@ -1,4 +1,4 @@
-export const formatDate = (date?: string) => {
+export const formatDate = (date?: string | undefined | Date) => {
 	if (date) {
 		const dateNow = new Date(date)
 		const abbreviated_months = [
