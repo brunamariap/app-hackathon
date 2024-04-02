@@ -5,26 +5,28 @@ interface DropdownProps {
 	label: string;
 	data: {
 		label: string;
-		value: any;
+		value: string | number;
 	}[];
+	onChange: () => void;
 }
 
-const Dropdown = ({ label }: DropdownProps) => {
+const Dropdown = ({ label, data, onChange }: DropdownProps) => {
 	return (
 		<View className='items-center justify-between'>
 			<RNPickerSelect
-				placeholder={{ 
+				placeholder={{
 					label: label,
 					value: undefined,
 				}}
 				value={undefined}
-				onValueChange={(value) => console.log(value)}
-				items={[
-					// { label: 'Ano', value: 'Ano' },
-					{ label: 'Football', value: 'football' },
-					{ label: 'Baseball', value: 'baseball' },
-					{ label: 'Hockey', value: 'hockey' },
-				]}
+				onValueChange={onChange}
+				// onValueChange={(value) => (value)}
+				// items={[
+				// 	{ label: '2022', value: '2022' },
+				// 	{ label: '2023', value: '2023' },
+				// 	{ label: '2023', value: '2024' },
+				// ]}
+				items={data}
 			/>
 		</View>
 	)

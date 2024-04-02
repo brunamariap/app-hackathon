@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import Details from "../pages/Details";
 import Home from "../pages/Home";
 import Historic from "../pages/Historic";
+import HistoricDetails from "../pages/HistoricDetails";
 
 const Stack = createStackNavigator();
 
@@ -15,6 +15,11 @@ const HistoricRoutes = () => {
 			<Stack.Screen
 				name="Historic"
 				component={Historic}
+			/>
+			<Stack.Screen
+				name="HistoricDetails"
+				// @ts-expect-error
+				component={HistoricDetails}
 			/>
 		</Stack.Navigator>
 	)

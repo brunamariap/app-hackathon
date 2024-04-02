@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import Details from "../pages/Details";
+import PropertyDetails from "../pages/PropertyDetails";
 import Home from "../pages/Home";
 
 const Stack = createStackNavigator();
@@ -16,8 +16,9 @@ const HomeRoutes = () => {
 				component={Home}
 			/>
 			<Stack.Screen
-				name="Details"
-				component={Details}
+				name="PropertyDetails"
+				// @ts-expect-error
+				component={PropertyDetails}
 			/>
 		</Stack.Navigator>
 	)

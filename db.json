@@ -1,0 +1,48 @@
+{
+	"users": [
+		{
+			"id": "1",
+			"username": "bruninha",
+			"name": "Bruna Maria",
+			"email": "teste@email.com",
+			"password": "1234",
+			"cityId": "1"
+		}
+	],
+	"informations": [
+		{
+			"id": "1",
+			"date": "2024-03-28T23:41:24.485Z",
+			"ph": 7.0,
+			"temperature": "32ºC",
+			"conductivity": "50 μS/cm",
+			"dissolved_oxygen": "5,0 mg/L",
+			"turbidity": "5,0 NTU",
+			"cityId": "1"
+		},
+		{
+			"id": "2",
+			"date": "2024-03-24T23:41:24.485Z",
+			"ph": 8.0,
+			"temperature": "35ºC",
+			"conductivity": "53 μS/cm",
+			"dissolved_oxygen": "6,0 mg/L",
+			"turbidity": "5,0 NTU",
+			"cityId": "1"
+		}
+	],
+	"cities": [
+		{
+			"id": "1",
+			"cep": "59980000",
+			"name": "José da Penha",
+			"state": "Rio Grande do Norte"
+		},
+		{
+			"id": "2",
+			"cep": "59950000",
+			"name": "Paraná",
+			"state": "Rio Grande do Norte"
+		}
+	]
+}

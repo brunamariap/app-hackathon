@@ -3,9 +3,32 @@ import { Input } from "../components/Input";
 import Button from "../components/Button";
 import { InputPassword } from "../components/InputPassword";
 import { useNavigation } from "@react-navigation/native";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, useForm } from "react-hook-form";
+import { useAuth } from "../contexts/AuthContext";
 
 const Register = () => {
 	const navigation = useNavigation()
+
+	const loginSchema = yup.object().shape({
+		username: yup
+			.string()
+			.required("Campo obrigatório"),
+		name: yup.string().required("Campo obrigatório"),
+		email: yup.string().required("Campo obrigatório"),
+		cep: yup.string().required("Campo obrigatório"),
+		password: yup.string().required("Campo obrigatório"),
+		password2: yup.string().required("Campo obrigatório"),
+	});
+
+	const {
+		control,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+	} = useForm({
+		resolver: yupResolver(loginSchema),
+	});
 
 	return (
 		<View

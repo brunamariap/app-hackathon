@@ -5,8 +5,8 @@ import React from "react";
 
 interface InfoCardProps {
 	property: string;
-	data: string | number;
-	updatedAt: Date;
+	data: string | number | undefined;
+	updatedAt: string | undefined;
 	icon: React.ReactNode;
 	contentClassName?: string;
 	onPress: () => void;
@@ -17,11 +17,12 @@ const InfoCard = ({
 	data,
 	updatedAt,
 	icon,
-	contentClassName
+	contentClassName,
+	onPress,
 }: InfoCardProps) => {
 	return (
 		<TouchableOpacity
-			onPress={() => { }}
+			onPress={onPress}
 			className={`w-full flex-row items-center bg-primary-background rounded-lg p-4 justify-between ${contentClassName}`}>
 			<View className="flex-row items-center gap-x-2">
 				<View>
@@ -38,7 +39,7 @@ const InfoCard = ({
 				<Octicons name="history" size={16} color={"#676767"} />
 				<View>
 					<Text className="text-gray text-xs">Última atualização em:</Text>
-					<Text className="text-gray text-xs">12/12/2023 às 12:00</Text>
+					<Text className="text-gray text-xs">{updatedAt}</Text>
 				</View>
 			</View>
 		</TouchableOpacity>
