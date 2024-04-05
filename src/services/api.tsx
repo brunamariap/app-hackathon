@@ -11,7 +11,7 @@ export const api = axios.create({
 });
 
 export const controleH2OApi = axios.create({
-	baseURL: "http://192.168.0.103:8000/api/",
+	baseURL: "http://192.168.0.106:8000/api/",
 	// baseURL: "https://controleh2o.pythonanywhere.com/api/",
 	headers: {
 		'Content-Type': 'application/json',

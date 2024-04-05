@@ -16,7 +16,7 @@ const PropertyDetails: React.FC<{ route: RouteProp<Record<string, PropertyDetail
 			className="flex-1 items-center justify-center bg-background-color w-full"
 		>
 			<Text className="text-black text-3xl">{propertyName}</Text>
-			<Text className="text-black font-semibold text-4xl mt-4">{data}</Text>
+			<Text className="text-black font-semibold text-3xl mt-4">{data}</Text>
 		</View>
 	)
 }

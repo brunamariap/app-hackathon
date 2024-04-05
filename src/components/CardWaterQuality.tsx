@@ -2,7 +2,7 @@ import { View, Text } from "react-native"
 import { Droplet } from "react-native-feather";
 
 interface CardWaterQualityProps {
-	isPotable: boolean;
+	isPotable?: boolean;
 	contentClassName?: string;
 };
 

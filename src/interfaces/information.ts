@@ -23,6 +23,7 @@ interface Characteristics {
 	data_atualizacao_formatada: string;
 	data_criacao_formatada: string;
 	potavel: string;
+	potabilidade_agua: boolean;
 	sensor: number;
 	media_ph: string;
 	media_condutividade: string;
